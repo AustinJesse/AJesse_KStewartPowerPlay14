@@ -7,7 +7,6 @@
 #include "../HealStrategy.h"
 #include "../FuryStrategy.h"
 
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest1
@@ -35,13 +34,12 @@ namespace UnitTest1
 		{
 			Library library;
 			std::vector<std::unique_ptr<Object>> objects;
-			library.inventory["Player"] = std::make_unique<PlayerFactory>();
-			library.inventory["Monster1"] = std::make_unique<MonsterFactory>();
-			library.inventory["Monster2"] = std::make_unique<MonsterFactory>();
-			library.inventory["Monster3"] = std::make_unique<MonsterFactory>();
-			for (const auto& object : library.inventory) {
-				objects.emplace_back(object.second);
-			}
+
+			objects.push_back(library.inventory.find("Player")->second->create(objects));
+			objects.push_back(library.inventory.find("Monster")->second->create(objects));
+			objects.push_back(library.inventory.find("Monster")->second->create(objects));
+			objects.push_back(library.inventory.find("Monster")->second->create(objects));
+
 			Player player2;
 			while (player2.getLevel() < 5) {
 				player2.levelUp();
@@ -51,15 +49,19 @@ namespace UnitTest1
 			int strength = player2.getStrength();
 			int SP = player2.getSP();
 			int health = player2.getHealth();
-			/*for (const auto& ability : player2.abilities)
-			{
-				ability->execute(objects);
-			}*/
+
 			player2.abilities.at(0)->execute(objects);
 			Assert::IsTrue(SP = player2.getSP() - 2 || player2.getSP() == 0 || player2.getSP() == 1);
 			Assert::IsTrue(SP >= 0);
 			Assert::IsTrue(player2.getHealth() > health);
 			SP = player2.getSP();
+
+			player2.abilities.at(1)->execute(objects);
+			Assert::IsTrue(player2.getStrength() == strength - 1);
+
+			player2.abilities.at(2)->execute(objects);
+			Assert::IsTrue(SP = player2.getSP() - 5 || player2.getSP() == 0 || player2.getSP() == 1);
+			Assert::IsTrue(SP >= 0);
 		}
 	};
 }
