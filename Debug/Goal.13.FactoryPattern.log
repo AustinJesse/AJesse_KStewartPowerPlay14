@@ -1,1 +1,13 @@
-﻿  Goal.13.FactoryPattern.vcxproj -> C:\Users\kylot\Documents\GitHub\AJesse_KStewartPowerPlay14\Debug\Goal.13.FactoryPattern.exe
+﻿  AttackStrategy.cpp
+  FearStrategy.cpp
+  FireballStrategy.cpp
+  FuryStrategy.cpp
+  Goal.13.cpp
+  HealStrategy.cpp
+  iStrategy.cpp
+  Item.cpp
+  Monster.cpp
+  Object.cpp
+  Player.cpp
+  Generating Code...
+  Goal.13.FactoryPattern.vcxproj -> C:\Users\austi\Desktop\AJesse_KStewartPowerPlay14\Debug\Goal.13.FactoryPattern.exe
