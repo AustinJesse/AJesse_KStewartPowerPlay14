@@ -42,22 +42,24 @@ namespace UnitTest1
 			for (const auto& object : library.inventory) {
 				objects.emplace_back(object.second);
 			}
-
-			/*while (player2.getLevel() < 5) {
+			Player player2;
+			while (player2.getLevel() < 5) {
 				player2.levelUp();
+			}
+			Assert::IsTrue(player2.abilities.size() == 5);
+			int level = player2.getLevel();
+			int strength = player2.getStrength();
+			int SP = player2.getSP();
+			int health = player2.getHealth();
+			/*for (const auto& ability : player2.abilities)
+			{
+				ability->execute(objects);
 			}*/
-			Player player;
-			player.levelUp();
-			player.levelUp();
-			player.levelUp();
-			player.levelUp();
-			Assert::IsTrue(player.abilities.size() == 5);
-			int level = player.getLevel();
-			int strength = player.getStrength();
-			int SP = player.getSP();
-
-
-
+			player2.abilities.at(0)->execute(objects);
+			Assert::IsTrue(SP = player2.getSP() - 2 || player2.getSP() == 0 || player2.getSP() == 1);
+			Assert::IsTrue(SP >= 0);
+			Assert::IsTrue(player2.getHealth() > health);
+			SP = player2.getSP();
 		}
 	};
 }
